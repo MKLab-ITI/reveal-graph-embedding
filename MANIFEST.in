@@ -1,0 +1,6 @@
+include LICENCE
+include README.md
+include requirements.txt
+
+recursive-include reveal_graph_embedding.embedding *.pyx *.c
+recursive-include reveal_graph_embedding.eps_randomwalk *.pyx *.c
