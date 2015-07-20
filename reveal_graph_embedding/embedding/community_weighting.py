@@ -32,7 +32,7 @@ def chi2_contingency_matrix(X_train, y_train):
     contingency_matrix = observed
     contingency_matrix -= expected
     contingency_matrix **= 2
-    contingency_matrix /= expected
+    contingency_matrix /= expected  # TODO: Invalid value encountered in true divide.
     # weights = contingency_matrix.max(axis=0)
 
     return contingency_matrix
