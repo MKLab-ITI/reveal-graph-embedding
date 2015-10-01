@@ -106,7 +106,7 @@ def classify_users(X_test, model, classifier_type="LinearSVC"):
     elif classifier_type == "LogisticRegression":
         prediction = model.predict_proba(X_test)
 
-        prediction[prediction <= 0.1] = 0.0
+        prediction[prediction <= 0.4] = 0.0
         prediction = spsp.coo_matrix(prediction)
     elif classifier_type == "RandomForest":
         if issparse(X_test):
@@ -114,7 +114,7 @@ def classify_users(X_test, model, classifier_type="LinearSVC"):
         else:
             prediction = model.predict_proba(X_test)
 
-        prediction[prediction <= 0.1] = 0.0
+        prediction[prediction <= 0.4] = 0.0
         prediction = spsp.coo_matrix(prediction)
     else:
         print("Invalid classifier type.")
