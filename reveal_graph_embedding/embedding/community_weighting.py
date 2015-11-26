@@ -11,6 +11,7 @@ from sklearn.preprocessing import LabelBinarizer
 def chi2_contingency_matrix(X_train, y_train):
     X = X_train.copy()
     X.data = np.ones_like(X.data)
+
     X = check_array(X, accept_sparse='csr')
     if np.any((X.data if issparse(X) else X) < 0):
         raise ValueError("Input X must be non-negative.")
@@ -21,18 +22,24 @@ def chi2_contingency_matrix(X_train, y_train):
 
     observed = safe_sparse_dot(Y.T, X)  # n_classes * n_features
 
-    feature_count = check_array(X.sum(axis=0))
-    class_prob = check_array(Y.mean(axis=0))
+    # feature_count = check_array(X.sum(axis=0))
+    # class_prob = check_array(Y.mean(axis=0))
+    feature_count = X.sum(axis=0).reshape(1, -1)
+    class_prob = Y.mean(axis=0).reshape(1, -1)
     expected = np.dot(class_prob.T, feature_count)
 
     observed = np.asarray(observed, dtype=np.float64)
 
     k = len(observed)
-    # Reuse f_obs for chi-squared statistics
+    # Reuse observed for chi-squared statistics
     contingency_matrix = observed
     contingency_matrix -= expected
     contingency_matrix **= 2
-    contingency_matrix /= expected  # TODO: Invalid value encountered in true divide.
+
+    expected[expected == 0.0] = 1.0
+
+    contingency_matrix /= expected
+
     # weights = contingency_matrix.max(axis=0)
 
     return contingency_matrix
