@@ -171,7 +171,7 @@ def scipy_sparse_to_csv(filepath, matrix, separator=",", directed=False, numberi
             if directed is False:
                 if col[edge] < row[edge]:
                     continue
-            file_row = str(row[edge]) + separator + str(col[edge]) + separator + str(data[edge]) + "\n"
+            file_row = str(row[edge]) + separator + str(col[edge]) + separator + repr(data[edge]) + "\n"
             f.write(file_row)
 
 

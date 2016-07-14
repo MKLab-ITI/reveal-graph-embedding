@@ -97,7 +97,7 @@ def arcte_with_lazy_pagerank_worker(iterate_nodes,
         s = np.zeros(number_of_nodes, dtype=np.float64)  #TODO: What if it is only one?
         r = np.zeros(number_of_nodes, dtype=np.float64)
         for n_index in range(node_chunk.size):
-            print(n_index)
+            # print(n_index)
             n = node_chunk[n_index]
 
             # Calculate similarity matrix slice.
@@ -211,7 +211,7 @@ def arcte_with_pagerank_worker(iterate_nodes,
         s = np.zeros(number_of_nodes, dtype=np.float64)  #TODO: What if it is only one?
         r = np.zeros(number_of_nodes, dtype=np.float64)
         for n_index in range(node_chunk.size):
-            print(n_index)
+            # print(n_index)
             n = node_chunk[n_index]
 
             # Calculate similarity matrix slice.
@@ -303,11 +303,13 @@ def arcte_worker(iterate_nodes,
     features = sparse.dok_matrix((number_of_nodes, number_of_nodes), dtype=np.float64)
     features = sparse.csr_matrix(features)
 
-    if iterate_nodes.size > 2000:
-        node_chunks = list(parallel_chunks(iterate_nodes, iterate_nodes.size//2000))
+    if iterate_nodes.size > 1000:
+        node_chunks = list(parallel_chunks(iterate_nodes, iterate_nodes.size//1000))
     else:
         node_chunks = list()
         node_chunks.append(iterate_nodes)
+
+    counter = 0
 
     for node_chunk in node_chunks:
         node_chunk = np.array(node_chunk, dtype=np.int64)
@@ -322,9 +324,14 @@ def arcte_worker(iterate_nodes,
 
         s = np.zeros(number_of_nodes, dtype=np.float64)  #TODO: What if it is only one?
         r = np.zeros(number_of_nodes, dtype=np.float64)
+
         for n_index in range(node_chunk.size):
-            # print(n_index)
+            counter += 1
             n = node_chunk[n_index]
+
+            # print(n_index)
+            # if counter % 1000 == 0:
+            #     print(counter)
 
             # Calculate similarity matrix slice.
             s[:] = 0.0
@@ -376,7 +383,7 @@ def arcte_worker(iterate_nodes,
         chunk_features = sparse.coo_matrix((data, (row, col)), shape=(number_of_nodes, number_of_nodes))
         chunk_features = sparse.csr_matrix(chunk_features)
 
-        features += chunk_features
+        features = features + chunk_features
 
     return features
 
@@ -662,7 +669,7 @@ def arcte(adjacency_matrix, rho, epsilon, number_of_threads=None):
         # local_features = sparse.hstack(results)
         local_features = results[0]
         for additive_features in results[1:]:
-            local_features += additive_features
+            local_features = local_features + additive_features
         local_features = sparse.csr_matrix(local_features)
 
     # Form base community feature matrix.

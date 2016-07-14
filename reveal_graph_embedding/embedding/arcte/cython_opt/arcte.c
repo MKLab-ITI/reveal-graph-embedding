@@ -1295,7 +1295,6 @@ static char __pyx_k_base_community_features[] = "base_community_features";
 static char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
 static char __pyx_k_number_of_local_communities[] = "number_of_local_communities";
 static char __pyx_k_normalize_community_features[] = "normalize_community_features";
-static char __pyx_k_reveal_arcte_embedding_common[] = "reveal_arcte.embedding.common";
 static char __pyx_k_get_natural_random_walk_matrix[] = "get_natural_random_walk_matrix";
 static char __pyx_k_home_georgerizos_Documents_GitH[] = "/home/georgerizos/Documents/GitHub/reveal-graph-embedding/reveal_graph_embedding/embedding/arcte/cython_opt/arcte.pyx";
 static char __pyx_k_unknown_dtype_code_in_numpy_pxd[] = "unknown dtype code in numpy.pxd (%d)";
@@ -1304,10 +1303,11 @@ static char __pyx_k_Georgios_Rizos_georgerizos_iti_g[] = "Georgios Rizos (george
 static char __pyx_k_Non_native_byte_order_not_suppor[] = "Non-native byte order not supported";
 static char __pyx_k_fast_approximate_cumulative_page[] = "fast_approximate_cumulative_pagerank_difference";
 static char __pyx_k_ndarray_is_not_Fortran_contiguou[] = "ndarray is not Fortran contiguous";
-static char __pyx_k_reveal_arcte_eps_randomwalk_cyth[] = "reveal_arcte.eps_randomwalk.cython_opt.transition";
-static char __pyx_k_reveal_graph_embedding_embedding[] = "reveal_graph_embedding.embedding.arcte.cython_opt.arcte";
+static char __pyx_k_reveal_graph_embedding_embedding[] = "reveal_graph_embedding.embedding.common";
+static char __pyx_k_reveal_graph_embedding_eps_rando[] = "reveal_graph_embedding.eps_randomwalk.cython_opt.transition";
 static char __pyx_k_Format_string_allocated_too_shor_2[] = "Format string allocated too short.";
-static char __pyx_k_reveal_arcte_eps_randomwalk_cyth_2[] = "reveal_arcte.eps_randomwalk.cython_opt.similarity";
+static char __pyx_k_reveal_graph_embedding_embedding_2[] = "reveal_graph_embedding.embedding.arcte.cython_opt.arcte";
+static char __pyx_k_reveal_graph_embedding_eps_rando_2[] = "reveal_graph_embedding.eps_randomwalk.cython_opt.similarity";
 static PyObject *__pyx_n_s_FLOAT64;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor_2;
@@ -1381,10 +1381,10 @@ static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_r;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_relevant_degrees;
-static PyObject *__pyx_n_s_reveal_arcte_embedding_common;
-static PyObject *__pyx_n_s_reveal_arcte_eps_randomwalk_cyth;
-static PyObject *__pyx_n_s_reveal_arcte_eps_randomwalk_cyth_2;
 static PyObject *__pyx_n_s_reveal_graph_embedding_embedding;
+static PyObject *__pyx_n_s_reveal_graph_embedding_embedding_2;
+static PyObject *__pyx_n_s_reveal_graph_embedding_eps_rando;
+static PyObject *__pyx_n_s_reveal_graph_embedding_eps_rando_2;
 static PyObject *__pyx_n_s_rho;
 static PyObject *__pyx_n_s_row;
 static PyObject *__pyx_n_s_row_list;
@@ -7555,10 +7555,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_relevant_degrees, __pyx_k_relevant_degrees, sizeof(__pyx_k_relevant_degrees), 0, 0, 1, 1},
-  {&__pyx_n_s_reveal_arcte_embedding_common, __pyx_k_reveal_arcte_embedding_common, sizeof(__pyx_k_reveal_arcte_embedding_common), 0, 0, 1, 1},
-  {&__pyx_n_s_reveal_arcte_eps_randomwalk_cyth, __pyx_k_reveal_arcte_eps_randomwalk_cyth, sizeof(__pyx_k_reveal_arcte_eps_randomwalk_cyth), 0, 0, 1, 1},
-  {&__pyx_n_s_reveal_arcte_eps_randomwalk_cyth_2, __pyx_k_reveal_arcte_eps_randomwalk_cyth_2, sizeof(__pyx_k_reveal_arcte_eps_randomwalk_cyth_2), 0, 0, 1, 1},
   {&__pyx_n_s_reveal_graph_embedding_embedding, __pyx_k_reveal_graph_embedding_embedding, sizeof(__pyx_k_reveal_graph_embedding_embedding), 0, 0, 1, 1},
+  {&__pyx_n_s_reveal_graph_embedding_embedding_2, __pyx_k_reveal_graph_embedding_embedding_2, sizeof(__pyx_k_reveal_graph_embedding_embedding_2), 0, 0, 1, 1},
+  {&__pyx_n_s_reveal_graph_embedding_eps_rando, __pyx_k_reveal_graph_embedding_eps_rando, sizeof(__pyx_k_reveal_graph_embedding_eps_rando), 0, 0, 1, 1},
+  {&__pyx_n_s_reveal_graph_embedding_eps_rando_2, __pyx_k_reveal_graph_embedding_eps_rando_2, sizeof(__pyx_k_reveal_graph_embedding_eps_rando_2), 0, 0, 1, 1},
   {&__pyx_n_s_rho, __pyx_k_rho, sizeof(__pyx_k_rho), 0, 0, 1, 1},
   {&__pyx_n_s_row, __pyx_k_row, sizeof(__pyx_k_row), 0, 0, 1, 1},
   {&__pyx_n_s_row_list, __pyx_k_row_list, sizeof(__pyx_k_row_list), 0, 0, 1, 1},
@@ -7845,7 +7845,7 @@ PyMODINIT_FUNC PyInit_arcte(void)
  * cimport cython
  * import scipy.sparse as sparse             # <<<<<<<<<<<<<<
  * 
- * from reveal_arcte.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 7; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
@@ -7861,16 +7861,16 @@ PyMODINIT_FUNC PyInit_arcte(void)
   /* "reveal_graph_embedding/embedding/arcte/cython_opt/arcte.pyx":9
  * import scipy.sparse as sparse
  * 
- * from reveal_arcte.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix             # <<<<<<<<<<<<<<
- * from reveal_arcte.eps_randomwalk.cython_opt.similarity import fast_approximate_cumulative_pagerank_difference
- * from reveal_arcte.embedding.common import normalize_community_features
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix             # <<<<<<<<<<<<<<
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.similarity import fast_approximate_cumulative_pagerank_difference
+ * from reveal_graph_embedding.embedding.common import normalize_community_features
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_get_natural_random_walk_matrix);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_get_natural_random_walk_matrix);
   __Pyx_GIVEREF(__pyx_n_s_get_natural_random_walk_matrix);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_reveal_arcte_eps_randomwalk_cyth, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_reveal_graph_embedding_eps_rando, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_get_natural_random_walk_matrix); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 9; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -7881,9 +7881,9 @@ PyMODINIT_FUNC PyInit_arcte(void)
 
   /* "reveal_graph_embedding/embedding/arcte/cython_opt/arcte.pyx":10
  * 
- * from reveal_arcte.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix
- * from reveal_arcte.eps_randomwalk.cython_opt.similarity import fast_approximate_cumulative_pagerank_difference             # <<<<<<<<<<<<<<
- * from reveal_arcte.embedding.common import normalize_community_features
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.similarity import fast_approximate_cumulative_pagerank_difference             # <<<<<<<<<<<<<<
+ * from reveal_graph_embedding.embedding.common import normalize_community_features
  * 
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -7891,7 +7891,7 @@ PyMODINIT_FUNC PyInit_arcte(void)
   __Pyx_INCREF(__pyx_n_s_fast_approximate_cumulative_page);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_fast_approximate_cumulative_page);
   __Pyx_GIVEREF(__pyx_n_s_fast_approximate_cumulative_page);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_reveal_arcte_eps_randomwalk_cyth_2, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_reveal_graph_embedding_eps_rando_2, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_fast_approximate_cumulative_page); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -7901,9 +7901,9 @@ PyMODINIT_FUNC PyInit_arcte(void)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "reveal_graph_embedding/embedding/arcte/cython_opt/arcte.pyx":11
- * from reveal_arcte.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix
- * from reveal_arcte.eps_randomwalk.cython_opt.similarity import fast_approximate_cumulative_pagerank_difference
- * from reveal_arcte.embedding.common import normalize_community_features             # <<<<<<<<<<<<<<
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.transition import get_natural_random_walk_matrix
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.similarity import fast_approximate_cumulative_pagerank_difference
+ * from reveal_graph_embedding.embedding.common import normalize_community_features             # <<<<<<<<<<<<<<
  * 
  * FLOAT64 = np.float64
  */
@@ -7912,7 +7912,7 @@ PyMODINIT_FUNC PyInit_arcte(void)
   __Pyx_INCREF(__pyx_n_s_normalize_community_features);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_normalize_community_features);
   __Pyx_GIVEREF(__pyx_n_s_normalize_community_features);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_reveal_arcte_embedding_common, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_reveal_graph_embedding_embedding, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_normalize_community_features); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -7922,7 +7922,7 @@ PyMODINIT_FUNC PyInit_arcte(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "reveal_graph_embedding/embedding/arcte/cython_opt/arcte.pyx":13
- * from reveal_arcte.embedding.common import normalize_community_features
+ * from reveal_graph_embedding.embedding.common import normalize_community_features
  * 
  * FLOAT64 = np.float64             # <<<<<<<<<<<<<<
  * ctypedef np.float64_t FLOAT64_t
@@ -7958,7 +7958,7 @@ PyMODINIT_FUNC PyInit_arcte(void)
  *     """
  *     Extracts local community features for all graph nodes based on the partitioning of node-centric similarity vectors.
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_9embedding_5arcte_10cython_opt_5arcte_1arcte, NULL, __pyx_n_s_reveal_graph_embedding_embedding); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_9embedding_5arcte_10cython_opt_5arcte_1arcte, NULL, __pyx_n_s_reveal_graph_embedding_embedding_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_arcte, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 20; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -7970,7 +7970,7 @@ PyMODINIT_FUNC PyInit_arcte(void)
  *     """
  *     Extracts local community features for all graph nodes based on the partitioning of node-centric similarity vectors.
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_9embedding_5arcte_10cython_opt_5arcte_3arcte_and_centrality, NULL, __pyx_n_s_reveal_graph_embedding_embedding); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_9embedding_5arcte_10cython_opt_5arcte_3arcte_and_centrality, NULL, __pyx_n_s_reveal_graph_embedding_embedding_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_arcte_and_centrality, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 125; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;

@@ -1,7 +1,8 @@
 __author__ = 'Georgios Rizos (georgerizos@iti.gr)'
 
+import numpy as np
 from sklearn.multiclass import OneVsRestClassifier
-from sklearn.svm import LinearSVC
+from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import normalize
@@ -28,24 +29,59 @@ def model_fit(X_train, y_train, svm_hardness, fit_intercept, number_of_threads, 
     Output:  - model: A trained scikit-learn One-vs-All multi-label scheme of linear SVC models.
     """
     if classifier_type == "LinearSVC":
-        model = OneVsRestClassifier(LinearSVC(C=svm_hardness, random_state=0, dual=False,
+        if X_train.shape[0] > X_train.shape[1]:
+            dual = False
+        else:
+            dual = True
+
+        model = OneVsRestClassifier(LinearSVC(C=svm_hardness, random_state=0, dual=dual,
                                               fit_intercept=fit_intercept),
                                     n_jobs=number_of_threads)
         model.fit(X_train, y_train)
     elif classifier_type == "LogisticRegression":
-        model = OneVsRestClassifier(LogisticRegression(C=svm_hardness, random_state=0, dual=False,
+        if X_train.shape[0] > X_train.shape[1]:
+            dual = False
+        else:
+            dual = True
+
+        model = OneVsRestClassifier(LogisticRegression(C=svm_hardness, random_state=0, dual=dual,
                                                        fit_intercept=fit_intercept),
                                     n_jobs=number_of_threads)
         model.fit(X_train, y_train)
     elif classifier_type == "RandomForest":
         model = OneVsRestClassifier(RandomForestClassifier(n_estimators=1000, criterion="gini",
-                                       n_jobs=number_of_threads, random_state=0))
+                                                           n_jobs=number_of_threads, random_state=0))
         if issparse(X_train):
             model.fit(X_train.tocsc(), y_train.toarray())
         else:
             model.fit(X_train, y_train.toarray())
     else:
         print("Invalid classifier type.")
+        raise RuntimeError
+
+    return model
+
+
+def meta_model_fit(X_train, y_train, svm_hardness, fit_intercept, number_of_threads, regressor_type="LinearSVR"):
+    """
+    Trains meta-labeler for predicting number of labels for each user.
+
+    Based on: Tang, L., Rajan, S., & Narayanan, V. K. (2009, April).
+              Large scale multi-label classification via metalabeler.
+              In Proceedings of the 18th international conference on World wide web (pp. 211-220). ACM.
+    """
+    if regressor_type == "LinearSVR":
+        if X_train.shape[0] > X_train.shape[1]:
+            dual = False
+        else:
+            dual = True
+
+        model = LinearSVR(C=svm_hardness, random_state=0, dual=dual,
+                          fit_intercept=fit_intercept)
+        y_train_meta = y_train.sum(axis=1)
+        model.fit(X_train, y_train_meta)
+    else:
+        print("Invalid regressor type.")
         raise RuntimeError
 
     return model
@@ -66,7 +102,7 @@ def weigh_users(X_test, model, classifier_type="LinearSVC"):
     if classifier_type == "LinearSVC":
         decision_weights = model.decision_function(X_test)
     elif classifier_type == "LogisticRegression":
-        decision_weights = model.decision_function(X_test)
+        decision_weights = model.predict_proba(X_test)
     elif classifier_type == "RandomForest":
         # if issparse(X_test):
         #     decision_weights = np.hstack(a[:, 1].reshape(X_test.shape[0], 1) for a in model.predict_proba(X_test.tocsr()))
@@ -83,7 +119,7 @@ def weigh_users(X_test, model, classifier_type="LinearSVC"):
     return decision_weights
 
 
-def classify_users(X_test, model, classifier_type="LinearSVC"):
+def classify_users(X_test, model, classifier_type, meta_model, upper_cutoff):
     """
     Uses a trained model and the unlabelled features to associate users with labels.
 
@@ -98,26 +134,110 @@ def classify_users(X_test, model, classifier_type="LinearSVC"):
     """
     if classifier_type == "LinearSVC":
         prediction = model.decision_function(X_test)
+        # prediction = penalize_large_classes(prediction)
 
-        prediction[prediction <= 0.0] = 0.0
-        prediction = spsp.coo_matrix(prediction)
+        meta_prediction = meta_model.predict(X_test)
+        meta_prediction = np.rint(meta_prediction)
+        meta_prediction[meta_prediction > upper_cutoff] = upper_cutoff
+
+        prediction_indices = np.argsort(prediction, axis=1)
+
+        prediction_row = np.empty(np.sum(meta_prediction), dtype=np.int32)
+        prediction_col = np.empty(np.sum(meta_prediction), dtype=np.int32)
+        prediction_data = np.empty(np.sum(meta_prediction), dtype=np.float64)
+
+        nnz_counter = 0
+        for i in range(X_test.shape[0]):
+            jj = prediction_indices[i, -meta_prediction[i]:]
+            dd = prediction[i, jj]
+
+            prediction_row[nnz_counter:nnz_counter+meta_prediction[i]] = i
+            prediction_col[nnz_counter:nnz_counter+meta_prediction[i]] = jj
+            prediction_data[nnz_counter:nnz_counter+meta_prediction[i]] = dd
+
+            nnz_counter += meta_prediction[i]
+
+        prediction = spsp.coo_matrix((prediction_data,
+                                      (prediction_row,
+                                       prediction_col)),
+                                     shape=prediction.shape)
 
         prediction = normalize(prediction, norm="l2", axis=0)
     elif classifier_type == "LogisticRegression":
         prediction = model.predict_proba(X_test)
+        # prediction = penalize_large_classes(prediction)
 
-        prediction[prediction <= 0.4] = 0.0
-        prediction = spsp.coo_matrix(prediction)
+        meta_prediction = meta_model.predict(X_test)
+        meta_prediction = np.rint(meta_prediction)
+        meta_prediction[meta_prediction > upper_cutoff] = upper_cutoff
+        meta_prediction[meta_prediction < 1] = 1
+
+        prediction_indices = np.argsort(prediction, axis=1)
+
+        prediction_row = np.empty(np.sum(meta_prediction), dtype=np.int32)
+        prediction_col = np.empty(np.sum(meta_prediction), dtype=np.int32)
+        prediction_data = np.empty(np.sum(meta_prediction), dtype=np.float64)
+
+        nnz_counter = 0
+        for i in range(X_test.shape[0]):
+            jj = prediction_indices[i, -meta_prediction[i]:]
+            dd = prediction[i, jj]
+
+            prediction_row[nnz_counter:nnz_counter+meta_prediction[i]] = i
+            prediction_col[nnz_counter:nnz_counter+meta_prediction[i]] = jj
+            prediction_data[nnz_counter:nnz_counter+meta_prediction[i]] = dd
+
+            nnz_counter += meta_prediction[i]
+
+        prediction = spsp.coo_matrix((prediction_data,
+                                      (prediction_row,
+                                       prediction_col)),
+                                     shape=prediction.shape)
     elif classifier_type == "RandomForest":
         if issparse(X_test):
             prediction = model.predict_proba(X_test.tocsr())
         else:
             prediction = model.predict_proba(X_test)
+        # prediction = penalize_large_classes(prediction)
 
-        prediction[prediction <= 0.4] = 0.0
-        prediction = spsp.coo_matrix(prediction)
+        meta_prediction = meta_model.predict(X_test)
+        meta_prediction = np.rint(meta_prediction)
+        meta_prediction[meta_prediction > upper_cutoff] = upper_cutoff
+
+        prediction_indices = np.argsort(prediction, axis=1)
+
+        prediction_row = np.empty(np.sum(meta_prediction), dtype=np.int32)
+        prediction_col = np.empty(np.sum(meta_prediction), dtype=np.int32)
+        prediction_data = np.empty(np.sum(meta_prediction), dtype=np.float64)
+
+        nnz_counter = 0
+        for i in range(X_test.shape[0]):
+            jj = prediction_indices[i, -meta_prediction[i]:]
+            dd = prediction[i, jj]
+
+            prediction_row[nnz_counter:nnz_counter+meta_prediction[i]] = i
+            prediction_col[nnz_counter:nnz_counter+meta_prediction[i]] = jj
+            prediction_data[nnz_counter:nnz_counter+meta_prediction[i]] = dd
+
+            nnz_counter += meta_prediction[i]
+
+        prediction = spsp.coo_matrix((prediction_data,
+                                      (prediction_row,
+                                       prediction_col)),
+                                     shape=prediction.shape)
     else:
         print("Invalid classifier type.")
         raise RuntimeError
+
+    return prediction
+
+
+def penalize_large_classes(prediction):
+
+    for j in range(prediction.shape[1]):
+        prediction[:, j] = np.sum(prediction[:, j])
+
+    for i in range(prediction.shape[0]):
+        prediction[i, :] = np.sum(prediction[i, :])
 
     return prediction

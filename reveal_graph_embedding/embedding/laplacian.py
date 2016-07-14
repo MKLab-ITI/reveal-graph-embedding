@@ -3,8 +3,8 @@ __author__ = 'Georgios Rizos (georgerizos@iti.gr)'
 import numpy as np
 import scipy.sparse as spsp
 
-from reveal_graph_embedding.embedding.implicit import get_adjacency_matrix_via_combinatorial_laplacian,\
-    get_adjacency_matrix_via_directed_laplacian
+from reveal_graph_embedding.embedding.implicit import get_implicit_combinatorial_adjacency_matrix,\
+    get_implicit_directed_adjacency_matrix
 
 
 def get_unnormalized_laplacian(adjacency_matrix):
@@ -51,11 +51,11 @@ def get_random_walk_laplacian(adjacency_matrix):
 
     return random_walk_laplacian
 
-
+"""
 def get_directed_laplacian(adjacency_matrix, rho=0.2):
     number_of_nodes = adjacency_matrix.shape[0]
 
-    effective_adjacency_matrix, rw_distribution = get_adjacency_matrix_via_directed_laplacian(adjacency_matrix, rho)
+    effective_adjacency_matrix, rw_distribution = get_implicit_directed_adjacency_matrix(adjacency_matrix, rho)
 
     I = spsp.spdiags(rw_distribution, [0], number_of_nodes, number_of_nodes)
     theta_matrix = I - effective_adjacency_matrix
@@ -66,9 +66,10 @@ def get_directed_laplacian(adjacency_matrix, rho=0.2):
 def get_combinatorial_laplacian(adjacency_matrix, rho=0.2):
     number_of_nodes = adjacency_matrix.shape[0]
 
-    effective_adjacency_matrix, rw_distribution = get_adjacency_matrix_via_combinatorial_laplacian(adjacency_matrix, rho)
+    effective_adjacency_matrix, rw_distribution = get_implicit_combinatorial_adjacency_matrix(adjacency_matrix, rho)
 
     I = spsp.spdiags(rw_distribution, [0], number_of_nodes, number_of_nodes)
     theta_matrix = I - effective_adjacency_matrix
 
     return theta_matrix
+"""

@@ -55,6 +55,8 @@ def get_natural_random_walk_matrix(adjacency_matrix, make_shared=False):
     out_degree = rw_transition.sum(axis=1)
     in_degree = rw_transition.sum(axis=0)
 
+    out_degree[out_degree == 0.0] = 1.0
+
     # Form the inverse of the diagonal matrix containing the out-degree
     for i in np.arange(rw_transition.shape[0]):
         rw_transition.data[rw_transition.indptr[i]: rw_transition.indptr[i + 1]] =\
