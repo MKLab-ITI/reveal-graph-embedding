@@ -142,20 +142,20 @@ def classify_users(X_test, model, classifier_type, meta_model, upper_cutoff):
 
         prediction_indices = np.argsort(prediction, axis=1)
 
-        prediction_row = np.empty(np.sum(meta_prediction), dtype=np.int32)
-        prediction_col = np.empty(np.sum(meta_prediction), dtype=np.int32)
-        prediction_data = np.empty(np.sum(meta_prediction), dtype=np.float64)
+        prediction_row = np.empty(int(np.sum(meta_prediction)), dtype=np.int32)
+        prediction_col = np.empty(int(np.sum(meta_prediction)), dtype=np.int32)
+        prediction_data = np.empty(int(np.sum(meta_prediction)), dtype=np.float64)
 
         nnz_counter = 0
         for i in range(X_test.shape[0]):
-            jj = prediction_indices[i, -meta_prediction[i]:]
+            jj = prediction_indices[i, -int(meta_prediction[i]):]
             dd = prediction[i, jj]
 
-            prediction_row[nnz_counter:nnz_counter+meta_prediction[i]] = i
-            prediction_col[nnz_counter:nnz_counter+meta_prediction[i]] = jj
-            prediction_data[nnz_counter:nnz_counter+meta_prediction[i]] = dd
+            prediction_row[nnz_counter:nnz_counter+int(meta_prediction[i])] = i
+            prediction_col[nnz_counter:nnz_counter+int(meta_prediction[i])] = jj
+            prediction_data[nnz_counter:nnz_counter+int(meta_prediction[i])] = dd
 
-            nnz_counter += meta_prediction[i]
+            nnz_counter += int(meta_prediction[i])
 
         prediction = spsp.coo_matrix((prediction_data,
                                       (prediction_row,
@@ -174,20 +174,20 @@ def classify_users(X_test, model, classifier_type, meta_model, upper_cutoff):
 
         prediction_indices = np.argsort(prediction, axis=1)
 
-        prediction_row = np.empty(np.sum(meta_prediction), dtype=np.int32)
-        prediction_col = np.empty(np.sum(meta_prediction), dtype=np.int32)
-        prediction_data = np.empty(np.sum(meta_prediction), dtype=np.float64)
+        prediction_row = np.empty(int(np.sum(meta_prediction)), dtype=np.int32)
+        prediction_col = np.empty(int(np.sum(meta_prediction)), dtype=np.int32)
+        prediction_data = np.empty(int(np.sum(meta_prediction)), dtype=np.float64)
 
         nnz_counter = 0
         for i in range(X_test.shape[0]):
-            jj = prediction_indices[i, -meta_prediction[i]:]
+            jj = prediction_indices[i, -int(meta_prediction[i]):]
             dd = prediction[i, jj]
 
-            prediction_row[nnz_counter:nnz_counter+meta_prediction[i]] = i
-            prediction_col[nnz_counter:nnz_counter+meta_prediction[i]] = jj
-            prediction_data[nnz_counter:nnz_counter+meta_prediction[i]] = dd
+            prediction_row[nnz_counter:nnz_counter+int(meta_prediction[i])] = i
+            prediction_col[nnz_counter:nnz_counter+int(meta_prediction[i])] = jj
+            prediction_data[nnz_counter:nnz_counter+int(meta_prediction[i])] = dd
 
-            nnz_counter += meta_prediction[i]
+            nnz_counter += int(meta_prediction[i])
 
         prediction = spsp.coo_matrix((prediction_data,
                                       (prediction_row,
@@ -206,20 +206,20 @@ def classify_users(X_test, model, classifier_type, meta_model, upper_cutoff):
 
         prediction_indices = np.argsort(prediction, axis=1)
 
-        prediction_row = np.empty(np.sum(meta_prediction), dtype=np.int32)
-        prediction_col = np.empty(np.sum(meta_prediction), dtype=np.int32)
-        prediction_data = np.empty(np.sum(meta_prediction), dtype=np.float64)
+        prediction_row = np.empty(int(np.sum(meta_prediction)), dtype=np.int32)
+        prediction_col = np.empty(int(np.sum(meta_prediction)), dtype=np.int32)
+        prediction_data = np.empty(int(np.sum(meta_prediction)), dtype=np.float64)
 
         nnz_counter = 0
         for i in range(X_test.shape[0]):
-            jj = prediction_indices[i, -meta_prediction[i]:]
+            jj = prediction_indices[i, -int(meta_prediction[i]):]
             dd = prediction[i, jj]
 
-            prediction_row[nnz_counter:nnz_counter+meta_prediction[i]] = i
-            prediction_col[nnz_counter:nnz_counter+meta_prediction[i]] = jj
-            prediction_data[nnz_counter:nnz_counter+meta_prediction[i]] = dd
+            prediction_row[nnz_counter:nnz_counter+int(meta_prediction[i])] = i
+            prediction_col[nnz_counter:nnz_counter+int(meta_prediction[i])] = jj
+            prediction_data[nnz_counter:nnz_counter+int(meta_prediction[i])] = dd
 
-            nnz_counter += meta_prediction[i]
+            nnz_counter += int(meta_prediction[i])
 
         prediction = spsp.coo_matrix((prediction_data,
                                       (prediction_row,
