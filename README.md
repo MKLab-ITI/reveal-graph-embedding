@@ -29,7 +29,7 @@ To install for all users on Unix/Linux:
 User Classification Experiments
 -------------------------------
 ### Get datasets
-- SNOW2014Graph dataset: email georgerizos [at] iti [dot] gr for an anonymized version of the dataset. Soon to be uploaded.
+- SNOW2014Graph dataset: Included anonymized in this project.
 - The Arizona State University social computing data repository contains the [ASU-Flickr](http://socialcomputing.asu.edu/datasets/Flickr) and [ASU-YouTube](http://socialcomputing.asu.edu/datasets/YouTube2) datasets.
 - The Insight Project Resources repository contains the [Multiview datasets](http://mlg.ucd.ie/aggregation/index.html) in which the PoliticsUK dataset can be found.
 
