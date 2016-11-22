@@ -35,7 +35,10 @@ User Classification Experiments
 
 ### Feature extraction methods
 - Implemented methods: ARCTE, BaseComm, LapEig, RepEig, Louvain, MROC.
-- Other methods' implementations: [DeepWalk](https://github.com/phanein/deepwalk), [EdgeCluster](http://leitang.net/social dimension.html), [RWModMax](https://github.com/rdevooght/RWModMax), [BigClam](http://snap.stanford.edu/), [OSLOM](http://www.oslom.org/).
+- Other methods' implementations: [LINE](https://github.com/tangjianpku/LINE), [DeepWalk](https://github.com/phanein/deepwalk), [EdgeCluster](http://leitang.net/social dimension.html), [RWModMax](https://github.com/rdevooght/RWModMax), [BigClam](http://snap.stanford.edu/), [OSLOM](http://www.oslom.org/).
+
+### User classification comparative study results
+- [Link](http://mklab.iti.gr/resources/arcte/) 
 
 ### Experiments demo
 - Follow instructions on file: reveal_graph_embedding/experiments/demo.py
