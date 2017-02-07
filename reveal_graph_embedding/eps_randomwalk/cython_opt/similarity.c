@@ -1219,9 +1219,9 @@ static char __pyx_k_fast_approximate_cumulative_page[] = "fast_approximate_cumul
 static char __pyx_k_fast_approximate_personalized_pa[] = "fast_approximate_personalized_pagerank";
 static char __pyx_k_lazy_approximate_personalized_pa[] = "lazy_approximate_personalized_pagerank";
 static char __pyx_k_ndarray_is_not_Fortran_contiguou[] = "ndarray is not Fortran contiguous";
-static char __pyx_k_reveal_arcte_eps_randomwalk_cyth[] = "reveal_arcte.eps_randomwalk.cython_opt.push";
-static char __pyx_k_reveal_graph_embedding_eps_rando[] = "reveal_graph_embedding.eps_randomwalk.cython_opt.similarity";
+static char __pyx_k_reveal_graph_embedding_eps_rando[] = "reveal_graph_embedding.eps_randomwalk.cython_opt.push";
 static char __pyx_k_Format_string_allocated_too_shor_2[] = "Format string allocated too short.";
+static char __pyx_k_reveal_graph_embedding_eps_rando_2[] = "reveal_graph_embedding.eps_randomwalk.cython_opt.similarity";
 static PyObject *__pyx_n_s_FLOAT64;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor;
 static PyObject *__pyx_kp_u_Format_string_allocated_too_shor_2;
@@ -1263,8 +1263,8 @@ static PyObject *__pyx_n_s_push_node;
 static PyObject *__pyx_n_s_pushable;
 static PyObject *__pyx_n_s_r;
 static PyObject *__pyx_n_s_range;
-static PyObject *__pyx_n_s_reveal_arcte_eps_randomwalk_cyth;
 static PyObject *__pyx_n_s_reveal_graph_embedding_eps_rando;
+static PyObject *__pyx_n_s_reveal_graph_embedding_eps_rando_2;
 static PyObject *__pyx_n_s_rho;
 static PyObject *__pyx_n_s_s;
 static PyObject *__pyx_n_s_scipy_sparse;
@@ -6442,8 +6442,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_pushable, __pyx_k_pushable, sizeof(__pyx_k_pushable), 0, 0, 1, 1},
   {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
-  {&__pyx_n_s_reveal_arcte_eps_randomwalk_cyth, __pyx_k_reveal_arcte_eps_randomwalk_cyth, sizeof(__pyx_k_reveal_arcte_eps_randomwalk_cyth), 0, 0, 1, 1},
   {&__pyx_n_s_reveal_graph_embedding_eps_rando, __pyx_k_reveal_graph_embedding_eps_rando, sizeof(__pyx_k_reveal_graph_embedding_eps_rando), 0, 0, 1, 1},
+  {&__pyx_n_s_reveal_graph_embedding_eps_rando_2, __pyx_k_reveal_graph_embedding_eps_rando_2, sizeof(__pyx_k_reveal_graph_embedding_eps_rando_2), 0, 0, 1, 1},
   {&__pyx_n_s_rho, __pyx_k_rho, sizeof(__pyx_k_rho), 0, 0, 1, 1},
   {&__pyx_n_s_s, __pyx_k_s, sizeof(__pyx_k_s), 0, 0, 1, 1},
   {&__pyx_n_s_scipy_sparse, __pyx_k_scipy_sparse, sizeof(__pyx_k_scipy_sparse), 0, 0, 1, 1},
@@ -6728,7 +6728,7 @@ PyMODINIT_FUNC PyInit_similarity(void)
  * cimport cython
  * import scipy.sparse as sparse             # <<<<<<<<<<<<<<
  * 
- * from reveal_arcte.eps_randomwalk.cython_opt.push import pagerank_limit_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import pagerank_limit_push
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 8; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
@@ -6744,16 +6744,16 @@ PyMODINIT_FUNC PyInit_similarity(void)
   /* "reveal_graph_embedding/eps_randomwalk/cython_opt/similarity.pyx":10
  * import scipy.sparse as sparse
  * 
- * from reveal_arcte.eps_randomwalk.cython_opt.push import pagerank_limit_push             # <<<<<<<<<<<<<<
- * from reveal_arcte.eps_randomwalk.cython_opt.push import pagerank_lazy_push
- * from reveal_arcte.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import pagerank_limit_push             # <<<<<<<<<<<<<<
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import pagerank_lazy_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_pagerank_limit_push);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_pagerank_limit_push);
   __Pyx_GIVEREF(__pyx_n_s_pagerank_limit_push);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_reveal_arcte_eps_randomwalk_cyth, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_reveal_graph_embedding_eps_rando, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_pagerank_limit_push); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 10; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -6764,9 +6764,9 @@ PyMODINIT_FUNC PyInit_similarity(void)
 
   /* "reveal_graph_embedding/eps_randomwalk/cython_opt/similarity.pyx":11
  * 
- * from reveal_arcte.eps_randomwalk.cython_opt.push import pagerank_limit_push
- * from reveal_arcte.eps_randomwalk.cython_opt.push import pagerank_lazy_push             # <<<<<<<<<<<<<<
- * from reveal_arcte.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import pagerank_limit_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import pagerank_lazy_push             # <<<<<<<<<<<<<<
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push
  * 
  */
   __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -6774,7 +6774,7 @@ PyMODINIT_FUNC PyInit_similarity(void)
   __Pyx_INCREF(__pyx_n_s_pagerank_lazy_push);
   PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_pagerank_lazy_push);
   __Pyx_GIVEREF(__pyx_n_s_pagerank_lazy_push);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_reveal_arcte_eps_randomwalk_cyth, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_reveal_graph_embedding_eps_rando, __pyx_t_2, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_pagerank_lazy_push); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -6784,9 +6784,9 @@ PyMODINIT_FUNC PyInit_similarity(void)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "reveal_graph_embedding/eps_randomwalk/cython_opt/similarity.pyx":12
- * from reveal_arcte.eps_randomwalk.cython_opt.push import pagerank_limit_push
- * from reveal_arcte.eps_randomwalk.cython_opt.push import pagerank_lazy_push
- * from reveal_arcte.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push             # <<<<<<<<<<<<<<
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import pagerank_limit_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import pagerank_lazy_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push             # <<<<<<<<<<<<<<
  * 
  * FLOAT64 = np.float64
  */
@@ -6795,7 +6795,7 @@ PyMODINIT_FUNC PyInit_similarity(void)
   __Pyx_INCREF(__pyx_n_s_cumulative_pagerank_difference_l);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_cumulative_pagerank_difference_l);
   __Pyx_GIVEREF(__pyx_n_s_cumulative_pagerank_difference_l);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_reveal_arcte_eps_randomwalk_cyth, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_reveal_graph_embedding_eps_rando, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_cumulative_pagerank_difference_l); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -6805,7 +6805,7 @@ PyMODINIT_FUNC PyInit_similarity(void)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "reveal_graph_embedding/eps_randomwalk/cython_opt/similarity.pyx":14
- * from reveal_arcte.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push
+ * from reveal_graph_embedding.eps_randomwalk.cython_opt.push import cumulative_pagerank_difference_limit_push
  * 
  * FLOAT64 = np.float64             # <<<<<<<<<<<<<<
  * ctypedef np.float64_t FLOAT64_t
@@ -6826,7 +6826,7 @@ PyMODINIT_FUNC PyInit_similarity(void)
  *                                            np.ndarray[FLOAT64_t, ndim=1] r,
  *                                            np.ndarray w_i,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_14eps_randomwalk_10cython_opt_10similarity_1fast_approximate_personalized_pagerank, NULL, __pyx_n_s_reveal_graph_embedding_eps_rando); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_14eps_randomwalk_10cython_opt_10similarity_1fast_approximate_personalized_pagerank, NULL, __pyx_n_s_reveal_graph_embedding_eps_rando_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_fast_approximate_personalized_pa, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6838,7 +6838,7 @@ PyMODINIT_FUNC PyInit_similarity(void)
  *                                            np.ndarray[FLOAT64_t, ndim=1] r,
  *                                            np.ndarray w_i,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_14eps_randomwalk_10cython_opt_10similarity_3lazy_approximate_personalized_pagerank, NULL, __pyx_n_s_reveal_graph_embedding_eps_rando); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_14eps_randomwalk_10cython_opt_10similarity_3lazy_approximate_personalized_pagerank, NULL, __pyx_n_s_reveal_graph_embedding_eps_rando_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_lazy_approximate_personalized_pa, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 79; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -6850,7 +6850,7 @@ PyMODINIT_FUNC PyInit_similarity(void)
  *                                                     np.ndarray[FLOAT64_t, ndim=1] r,
  *                                                     np.ndarray w_i,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_14eps_randomwalk_10cython_opt_10similarity_5fast_approximate_cumulative_pagerank_difference, NULL, __pyx_n_s_reveal_graph_embedding_eps_rando); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_22reveal_graph_embedding_14eps_randomwalk_10cython_opt_10similarity_5fast_approximate_cumulative_pagerank_difference, NULL, __pyx_n_s_reveal_graph_embedding_eps_rando_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_fast_approximate_cumulative_page, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 168; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;

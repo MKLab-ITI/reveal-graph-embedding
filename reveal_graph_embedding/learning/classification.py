@@ -137,8 +137,9 @@ def classify_users(X_test, model, classifier_type, meta_model, upper_cutoff):
         # prediction = penalize_large_classes(prediction)
 
         meta_prediction = meta_model.predict(X_test)
-        meta_prediction = np.rint(meta_prediction)
+        meta_prediction = np.rint(meta_prediction) + 1
         meta_prediction[meta_prediction > upper_cutoff] = upper_cutoff
+        meta_prediction[meta_prediction < 2] = 2
 
         prediction_indices = np.argsort(prediction, axis=1)
 
@@ -168,9 +169,9 @@ def classify_users(X_test, model, classifier_type, meta_model, upper_cutoff):
         # prediction = penalize_large_classes(prediction)
 
         meta_prediction = meta_model.predict(X_test)
-        meta_prediction = np.rint(meta_prediction)
+        meta_prediction = np.rint(meta_prediction) + 1
         meta_prediction[meta_prediction > upper_cutoff] = upper_cutoff
-        meta_prediction[meta_prediction < 1] = 1
+        meta_prediction[meta_prediction < 2] = 2
 
         prediction_indices = np.argsort(prediction, axis=1)
 
@@ -201,8 +202,9 @@ def classify_users(X_test, model, classifier_type, meta_model, upper_cutoff):
         # prediction = penalize_large_classes(prediction)
 
         meta_prediction = meta_model.predict(X_test)
-        meta_prediction = np.rint(meta_prediction)
+        meta_prediction = np.rint(meta_prediction) + 1
         meta_prediction[meta_prediction > upper_cutoff] = upper_cutoff
+        meta_prediction[meta_prediction < 2] = 2
 
         prediction_indices = np.argsort(prediction, axis=1)
 

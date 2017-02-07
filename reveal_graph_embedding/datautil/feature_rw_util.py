@@ -23,7 +23,8 @@ def read_features(method_name, path):
     continuous_feature_method_set.update(["lapeig",
                                           "deepwalk",
                                           "rwmodmax",
-                                          "repeig"])
+                                          "repeig",
+                                          "line"])
 
     method_name_lowercase = method_name.lower()
     if method_name_lowercase in sparse_feature_method_set:

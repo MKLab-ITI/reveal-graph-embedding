@@ -41,6 +41,7 @@ def store_performace_measures(performance_measures, memory_path, experiment_stri
 
     # Store average scores
     path = memory_path + "/scores/" + experiment_string + "_average_scores.txt"
+    # path = memory_path + "/scores_ext/" + experiment_string + "_average_scores.txt"
     if not os.path.exists(path):
         with open(path, "w") as fp:
             write_average_score_row(fp, "Macro Precision", performance_measures[0])
@@ -62,6 +63,7 @@ def store_performace_measures(performance_measures, memory_path, experiment_stri
 
     # Store category-specific F scores
     path = memory_path + "/scores/" + experiment_string + "_F_scores.txt"
+    # path = memory_path + "/scores_ext/" + experiment_string + "_F_scores.txt"
     if not os.path.exists(path):
         with open(path, "w") as fp:
             for c in np.arange(number_of_categories):
